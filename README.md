@@ -1,7 +1,7 @@
-<h1>🚀 Tublian Login Button Detector</h1>
+<h1>Tublian Login Button Detector</h1>
 <p>This project automates the detection of the login button on <a href="https://tublian.com" target="_blank">Tublian</a>. It captures a screenshot of the website, detects the login button using OpenCV, and visualizes the detected coordinates.</p>
 
-<h2>📌 Features</h2>
+<h2>Features</h2>
     <ul>
         <li>Captures a <strong>screenshot</strong> of Tublian’s homepage using Selenium.</li>
         <li>Detects the <strong>login button</strong> based on color and shape filtering.</li>
