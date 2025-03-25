@@ -14,7 +14,7 @@ tublian_login_detector/
 │── detect_login_button.py   # Captures screenshot & detects button
 │── visualize_detection.py   # Visualizes detected coordinates
 │── test_detection.py        # Unit tests for button detection
-│── README.html              # Documentation
+│── README.md              # Documentation
 │── requirements.txt         # Dependencies
 │── tublian_screenshot.png   # (Generated) Screenshot of Tublian
 │── detected_login_button.png # (Generated) Image with detected button
@@ -23,8 +23,8 @@ tublian_login_detector/
 <h2>Installation</h2>
     
 <h3>1️⃣ Clone the repository</h3>
-<pre><code>git clone https://github.com/yourusername/tublian_login_detector.git
-cd tublian_login_detector</code></pre>
+<pre><code>git clone https://github.com/yourusername/detect_login_button.git
+cd detect_login_button</code></pre>
 
 <h3>2️⃣ Set up a virtual environment (optional)</h3>
 <pre><code>uv venv
