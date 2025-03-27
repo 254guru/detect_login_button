@@ -46,7 +46,7 @@ source .venv/bin/activate  # On Windows use: .venv\Scripts\activate</code></pre>
 <h2>▶️ Running the Program</h2>
 
 <h3>1️⃣ Capture a screenshot, detect, highlight, and click the login button</h3>
-<pre><code>python3 detect_login_button.py</code></pre>
+<pre><code>python3 detect_login_button.py https://tublian.com</code></pre>
 <p><strong>The program will:</strong></p>
 <ul>
     <li>Open the browser and navigate to the provided URL.</li>
