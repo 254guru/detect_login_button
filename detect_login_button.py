@@ -11,7 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 def capture_screenshot(url, output_file="screenshot.png"):
     """Captures a screenshot of the given URL and returns the WebDriver instance."""
     options = Options()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--window-size=1280x800")
 
     service = Service(ChromeDriverManager().install())
