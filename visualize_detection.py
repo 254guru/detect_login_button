@@ -1,29 +1,23 @@
 import cv2
 import matplotlib.pyplot as plt
-from detect_login_button import capture_screenshot, find_login_button, detect_and_click_login
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from detect_login_button import capture_screenshot, find_login_button_opencv
 
-def visualize_detection(image_path, detected_coordinates, output_path="detected_login_button.png"):
-    """Marks detected login buttons on the image, saves it, and displays it."""
-    if not detected_coordinates:
-        print("❌ No login buttons detected. Skipping visualization.")
+def visualize_detection(image_path, detected_buttons, output_path="detected_login_button.png"):
+    """Marks detected login buttons and saves the visualization."""
+    if not detected_buttons:
+        print("❌ No login button detected. Skipping visualization.")
         return
 
     image = cv2.imread(image_path)
 
-    # Mark each detected button
-    for coords in detected_coordinates:
-        x, y = coords["x"], coords["y"]
-        cv2.circle(image, (x, y), 10, (0, 0, 255), -1)  # Red dot
+    for (x, y, w, h) in detected_buttons:
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 3)  # Red box
 
-    # Convert to RGB for Matplotlib
+    # Convert for display
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-    # Display the marked image
-    plt.figure(figsize=(12, 6))
+    
+    # Show image
+    plt.figure(figsize=(10, 5))
     plt.imshow(image_rgb)
     plt.title("Detected Login Button(s)")
     plt.axis("off")
@@ -34,12 +28,8 @@ def visualize_detection(image_path, detected_coordinates, output_path="detected_
     print(f"✅ Visualization saved as {output_path}")
 
 if __name__ == "__main__":
-    url = input("🌐 Enter website URL: ").strip()
-    
-    driver, coordinates_list, highlighted_screenshot = detect_and_click_login(url, auto_click=False)
+    screenshot_path = "screenshot.png"
+    detected_buttons = find_login_button_opencv(screenshot_path)
 
-    if coordinates_list:
-        visualize_detection(highlighted_screenshot, coordinates_list)
-
-    if driver:
-        driver.quit()
+    if detected_buttons:
+        visualize_detection(screenshot_path, detected_buttons)
