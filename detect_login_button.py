@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import argparse
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -65,6 +66,7 @@ def detect_and_click_login(url, auto_click=True):
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
+    print(f"🌐 Opening: {url}")
     driver.get(url)
     time.sleep(3)  # Wait for elements to load
 
@@ -96,5 +98,9 @@ def detect_and_click_login(url, auto_click=True):
     driver.quit()
 
 if __name__ == "__main__":
-    url = "https://tublian.com"  # Change to any website
-    detect_and_click_login(url, auto_click=True)
+    parser = argparse.ArgumentParser(description="Detect login button on a webpage.")
+    parser.add_argument("url", type=str, help="URL of the website to scan.")
+    parser.add_argument("--no-click", action="store_true", help="Disable auto-clicking the detected login button.")
+
+    args = parser.parse_args()
+    detect_and_click_login(args.url, auto_click=not args.no_click)
